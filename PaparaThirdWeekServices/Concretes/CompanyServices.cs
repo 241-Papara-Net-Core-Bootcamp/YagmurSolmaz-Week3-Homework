@@ -1,4 +1,5 @@
 ﻿using PaparaThirdWeek.Data.Abstracts;
+using PaparaThirdWeek.Data.Concretes;
 using PaparaThirdWeek.Domain.Entities;
 using PaparaThirdWeek.Services.Abstracts;
 using System;
@@ -18,14 +19,31 @@ namespace PaparaThirdWeek.Services.Concretes
             _companyRepository = companyRepository;
         }
 
-        public void Add(Company company)
+        // GetAll, Post, Update ve Delete Methods
+
+        //GetAllMethod
+        public IEnumerable<Company> GetAll()
+        {
+            return _companyRepository.GetAll();
+        }
+
+        // Post Method
+        public void Post(Company company)
         {
             _companyRepository.Add(company);
         }
 
-        public IEnumerable<Company> GetAll()
+        // Update Method
+        public void Update(Company company)
         {
-            return _companyRepository.Get().ToList();
+            _companyRepository.Update(company);
         }
+
+        // Delete Method
+        public void Delete(Company company)
+        {
+            _companyRepository.Remove(company);
+        }
+
     }
 }
