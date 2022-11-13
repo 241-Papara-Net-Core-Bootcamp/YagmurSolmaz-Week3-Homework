@@ -12,9 +12,9 @@ namespace PaparaThirdWeek.Data.Context
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfiguration(new CompanyConfiguration());
+            modelBuilder.ApplyConfiguration(new CompanyConfiguration());//CompanyConfiguration applied
         }
-        public DbSet<Company> Companies { get; set; }
+        public DbSet<Company> Companies { get; set; }//Convert classes into tables
 
 
     }

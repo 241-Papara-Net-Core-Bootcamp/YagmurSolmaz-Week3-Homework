@@ -15,7 +15,11 @@ namespace PaparaThirdWeek.Data.Concretes
         {
             Context = context;
         }
-
+        public IQueryable<T> GetAll(Expression<Func<T, bool>> filter)
+        {
+            return filter == null ? Context.Set<T>().AsQueryable()
+                                  : Context.Set<T>().Where(filter).AsQueryable();
+        }
         public void Add(T entity)
         {
             Context.Set<T>().Add(entity);
@@ -28,13 +32,7 @@ namespace PaparaThirdWeek.Data.Concretes
                 .Where(x => !x.IsDeleted)
                 .AsQueryable();
         }
-
-        public IQueryable<T> GetAll(Expression<Func<T, bool>> expression)
-        {
-            return Context.Set<T>()
-                .Where(expression)
-                .AsQueryable();
-        }
+              
 
         public void HardRemove(T entity)
         {
